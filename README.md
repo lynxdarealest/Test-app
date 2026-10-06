@@ -13,6 +13,16 @@ python -m http.server 8080
 
 Mở `http://localhost:8080`.
 
+## Chạy trên GitHub Pages
+
+Repo đã có workflow `.github/workflows/deploy-pages.yml` để deploy Pages khi push lên nhánh `main`.
+
+Sau khi merge vào `main`, truy cập:
+
+- `https://lynxdarealest.github.io/Test-app/`
+
+Trên iPhone: mở bằng Safari → `Share` → `Add to Home Screen`.
+
 ## Tính năng
 
 - Giao diện rõ ràng, đơn giản, responsive.

@@ -1,14 +1,15 @@
 {
   "name": "Kemono Viewer",
   "short_name": "Kemono",
-  "start_url": "/",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#020617",
   "theme_color": "#111827",
   "description": "PWA đơn giản để xem bài viết từ kemono.cr",
   "icons": [
     {
-      "src": "/icon.svg",
+      "src": "./icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
