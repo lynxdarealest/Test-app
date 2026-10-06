@@ -1,5 +1,6 @@
 const SITE_ORIGIN = "https://kemono.cr";
 const API_BASE = `${SITE_ORIGIN}/api/v1`;
+const REQUEST_TIMEOUT_MS = 15000;
 
 const form = document.querySelector("#search-form");
 const postsRoot = document.querySelector("#posts");
@@ -33,12 +34,28 @@ function postCard(post) {
   `;
 }
 
+async function fetchWithTimeout(url, options = {}, timeoutMs = REQUEST_TIMEOUT_MS) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+
+  try {
+    return await fetch(url, { ...options, signal: controller.signal });
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+function isConnectionError(error) {
+  if (!error) return false;
+  return error.name === "AbortError" || error instanceof TypeError;
+}
+
 async function loadPosts(service, creatorId) {
   setStatus("Đang tải...");
   postsRoot.innerHTML = "";
 
   const endpoint = `${API_BASE}/${encodeURIComponent(service)}/user/${encodeURIComponent(creatorId)}?o=0`;
-  const response = await fetch(endpoint, { mode: "cors" });
+  const response = await fetchWithTimeout(endpoint, { mode: "cors" });
 
   if (!response.ok) {
     throw new Error(`API lỗi (${response.status})`);
@@ -68,6 +85,10 @@ form.addEventListener("submit", async (event) => {
   try {
     await loadPosts(service.toString(), creatorId);
   } catch (error) {
+    if (isConnectionError(error)) {
+      setStatus("Không thể kết nối đến máy chủ. Vui lòng kiểm tra mạng hoặc thử lại sau.");
+      return;
+    }
     setStatus(`Không thể tải dữ liệu: ${error.message}`);
   }
 });
