@@ -1,4 +1,4 @@
-const CACHE_NAME = "kemono-pwa-v2";
+const CACHE_NAME = "kemono-pwa-v3";
 const ASSETS = ["./", "./index.html", "./styles.css", "./app.js", "./manifest.webmanifest", "./icon.svg"];
 
 self.addEventListener("install", (event) => {

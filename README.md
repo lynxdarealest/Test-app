@@ -1,6 +1,6 @@
 # Test-app
 
-PWA đơn giản để xem dữ liệu từ API `kemono.cr`, tối ưu bố cục gọn nhẹ cho iPhone.
+PWA đơn giản để xem dữ liệu từ API Kemono, tối ưu bố cục gọn nhẹ cho iPhone.
 
 ## Chạy local
 
@@ -26,6 +26,7 @@ Trên iPhone: mở bằng Safari → `Share` → `Add to Home Screen`.
 ## Tính năng
 
 - Giao diện rõ ràng, đơn giản, responsive.
-- Nhập `service` và `creator ID` để tải bài viết từ `https://kemono.cr/api/v1/{service}/user/{creatorId}`.
+- Nhập `service` và `creator ID` để tải bài viết từ API Kemono.
+- App tự thử lần lượt `https://kemono.cr` rồi `https://kemono.su` khi host chính bị lỗi mạng/CORS.
 - Có `manifest.webmanifest` + `service worker` để dùng dạng PWA.
 - Có thể cài lên iPhone qua Safari (`Share` → `Add to Home Screen`).
